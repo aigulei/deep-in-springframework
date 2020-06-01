@@ -22,6 +22,7 @@ public class BeanFactoryAsIOCContainerDemo {
         //加载配置
         int beanDefinitionsCount  = reader.loadBeanDefinitions(location);
         System.out.println("Bean定义加载的数量:"+beanDefinitionsCount);
+        //依赖查找集合对象
         lookupCollectionByType(beanFactory);
     }
     private static void lookupCollectionByType(BeanFactory beanFactory){

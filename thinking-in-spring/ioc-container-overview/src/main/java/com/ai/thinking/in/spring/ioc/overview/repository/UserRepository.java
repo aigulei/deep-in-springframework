@@ -10,7 +10,9 @@ import java.util.Collection;
 public class UserRepository {
     private Collection<User> users;//自定义Bean
 
-    private BeanFactory beanFactory;//内建非Bean对象(依赖)
+    private BeanFactory beanFactory; //内建非Bean对象（依赖）
+
+    private ObjectFactory<User> userObjectFactory;
 
     private ObjectFactory<ApplicationContext> objectFactory;
 
@@ -28,6 +30,14 @@ public class UserRepository {
 
     public BeanFactory getBeanFactory() {
         return beanFactory;
+    }
+
+    public ObjectFactory<User> getUserObjectFactory() {
+        return userObjectFactory;
+    }
+
+    public void setUserObjectFactory(ObjectFactory<User> userObjectFactory) {
+        this.userObjectFactory = userObjectFactory;
     }
 
     public ObjectFactory<ApplicationContext> getObjectFactory() {

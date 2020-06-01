@@ -19,30 +19,25 @@ import java.util.Map;
  */
 public class DependencyInjectionDemo {
     public static void main(String[] args) {
-        //BeanFactory applicationContext = new ClassPathXmlApplicationContext("META-INF/dependency-injection-context.xml");
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("META-INF/dependency-injection-context.xml");
-
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("META-INF/dependency-injection-context.xml");
         //依赖来源一：自定义Bean
-        UserRepository userRepository = applicationContext.getBean("userRepository", UserRepository.class);
+        UserRepository userRepository = beanFactory.getBean("userRepository",UserRepository.class);
+        System.out.println(beanFactory);
         //System.out.println(userRepository.getUsers());
         //依赖来源二：依赖注入（内建依赖）
         System.out.println(userRepository.getBeanFactory());
-
-
-        ObjectFactory objectFactory = userRepository.getObjectFactory();
-        System.out.println(objectFactory.getObject()==applicationContext);
-
-        //依赖查找(错误)
+        System.out.println(beanFactory==userRepository.getBeanFactory());
+        //依赖查找(错误代码)
         //System.out.println(beanFactory.getBean(BeanFactory.class));
-
-        // 依赖来源三：容器内建Bean(不是业务方或自己的应用来构建的，而是内部自己创建的)
-        Environment environment = applicationContext.getBean(Environment.class);
-        System.out.println("获取Enviroment类型的Bean："+environment);
-        //whoIsIOCContainer(userRepository,applicationContext);
+        //依赖来源三：容器内建Bean
+        Environment environment = beanFactory.getBean(Environment.class);
+        System.out.println(environment);
     }
-    private static void whoIsIOCContainer(UserRepository userRepository,ApplicationContext applicationContext){
+    private static void whoIsIoCContainer(UserRepository userRepository,BeanFactory beanFactory){
+        //ConfigurableApplicationContext<-ApplicationContxt<-BeanFactory
+        //ConfigurableApplicationContext#getBeanFactory()
         //这个表达式为什么不会成立
-        System.out.println(userRepository.getBeanFactory()==applicationContext);
+        System.out.println(userRepository.getBeanFactory()==beanFactory);
         //ApplicationContext is BeanFactory
     }
 }

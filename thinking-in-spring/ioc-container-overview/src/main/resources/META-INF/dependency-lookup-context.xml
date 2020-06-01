@@ -7,13 +7,10 @@
         <property name="id" value="1"></property>
         <property name="name" value="AI"></property>
     </bean>
-    <bean id="superUser" class="com.ai.thinking.in.spring.ioc.overview.domain.SuperUser" parent="user"
-        primary="true">
-        <property name="address" value="南京"></property>
+    <bean id="superUser" class="com.ai.thinking.in.spring.ioc.overview.domain.SuperUser" parent="user" primary="true">
+        <property name="address" value="北京"></property>
     </bean>
-
-    <bean id="objectFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+    <bean id ="objectFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
         <property name="targetBeanName" value="user"></property>
     </bean>
-
 </beans>

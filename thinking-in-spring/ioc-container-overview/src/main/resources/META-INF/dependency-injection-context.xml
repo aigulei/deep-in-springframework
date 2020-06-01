@@ -5,15 +5,16 @@
         http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-<import resource="dependency-lookup-context.xml"/>
+    <import resource="dependency-lookup-context.xml"/>
     <bean id="userRepository" class="com.ai.thinking.in.spring.ioc.overview.repository.UserRepository"
-        autowire="byType"> <!--Auto-Wiring-->
-        <!--手工配置-->
+          autowire="byType"><!--Auto-Wiring-->
+        <!--手动配置-->
         <!--<property name="users">
             <util:list>
-                <ref bean="superUser"></ref>
-                <ref bean="user"></ref>
+                <ref bean="user"/>
+                <ref bean="superUser"/>
             </util:list>
         </property>-->
+
     </bean>
 </beans>
