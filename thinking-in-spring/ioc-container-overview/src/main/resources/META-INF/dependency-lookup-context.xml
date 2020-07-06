@@ -6,6 +6,10 @@
     <bean id="user" class ="com.ai.thinking.in.spring.ioc.overview.domain.User">
         <property name="id" value="1"></property>
         <property name="name" value="AI"></property>
+        <property name="city" value="BEIJING"/>
+        <property name="workCities" value="BEIJING,SHANGHAI"/>
+        <property name="lifeCities" value="BEIJING,HANGZHOU"/>
+        <property name="configFileLocation" value="classpath:META-INF/user-config.properties"/>
     </bean>
     <bean id="superUser" class="com.ai.thinking.in.spring.ioc.overview.domain.SuperUser" parent="user" primary="true">
         <property name="address" value="北京"></property>
