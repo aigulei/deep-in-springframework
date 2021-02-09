@@ -1,18 +1,22 @@
 package com.ai.thinking.in.spring.ioc.overview.domain;
 
 import com.ai.thinking.in.spring.ioc.overview.enums.City;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.core.io.Resource;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.Arrays;
 import java.util.List;
 
-public class User {
+public class User implements BeanNameAware {
     private Long id;
     private String name;
     private City city;
     private City[] workCities;
     private List<City> lifeCities;
     private Resource configFileLocation;
+    private String beanName;
     public Long getId() {
         return id;
     }
@@ -78,5 +82,19 @@ public class User {
         user.setId(1L);
         user.setName("AI");
         return user;
+    }
+
+    @PostConstruct
+    public void init(){
+        System.out.println(beanName+"初始化中....");
+    }
+    @PreDestroy
+    public void destroy(){
+        System.out.println(beanName+"销毁中....");
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        this.beanName = name;
     }
 }
