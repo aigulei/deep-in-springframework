@@ -86,11 +86,11 @@ public class User implements BeanNameAware {
 
     @PostConstruct
     public void init(){
-        System.out.println(beanName+"鍒濆鍖栦腑....");
+        System.out.println(beanName+"初始化中....");
     }
     @PreDestroy
     public void destroy(){
-        System.out.println(beanName+"閿�姣佷腑....");
+        System.out.println(beanName+"销毁中....");
     }
 
     @Override
