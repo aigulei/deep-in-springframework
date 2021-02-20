@@ -6,6 +6,8 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/beans/spring-context.xsd">
-        <bean id="userHolder" class="com.ai.thinking.in.spring.bean.lifecycle.UserHolder" autowire="constructor"></bean>
+        <bean id="userHolder" class="com.ai.thinking.in.spring.bean.lifecycle.UserHolder" autowire="constructor">
+            <property name="description" value="this is userHolder"></property>
+        </bean>
 
 </beans>
