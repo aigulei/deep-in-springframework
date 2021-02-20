@@ -20,16 +20,20 @@ public class BeanInstantiationLifecycleDemo {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         beanFactory.addBeanPostProcessor(new MyInstantiationAwareBeanPostProcessor());
         XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
-        String location = "META-INF/dependency-lookup-context.xml";
-        Resource resource = new ClassPathResource(location);
-        EncodedResource encodedResource = new EncodedResource(resource,"UTF-8");
-        int beanNumbers = beanDefinitionReader.loadBeanDefinitions(encodedResource);
+        String[] locations = {"META-INF/dependency-lookup-context.xml","META-INF/bean-constructor-dependency-injection.xml"};
+/*        Resource resource = new ClassPathResource(location);
+        EncodedResource encodedResource = new EncodedResource(resource,"UTF-8");*/
+        int beanNumbers = beanDefinitionReader.loadBeanDefinitions(locations);
         System.out.println("已加载BeanDefinition数量:"+beanNumbers);
         User user = beanFactory.getBean("user", User.class);
         System.out.println(user);
 
         User superUser = beanFactory.getBean("superUser",User.class);
         System.out.println(superUser);
+
+        //构造器注入按照类型注入，resolveDependency
+        UserHolder userHolder = beanFactory.getBean("userHolder",UserHolder.class);
+        System.out.println(userHolder);
     }
     static class MyInstantiationAwareBeanPostProcessor implements InstantiationAwareBeanPostProcessor {
 
