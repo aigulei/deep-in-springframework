@@ -2,14 +2,13 @@ package com.ai.thinking.in.spring.bean.lifecycle;
 
 import com.ai.thinking.in.spring.ioc.overview.domain.User;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanClassLoaderAware;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.*;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
 
-public class UserHolder implements BeanNameAware, BeanClassLoaderAware,BeanFactoryAware , EnvironmentAware {
+import javax.annotation.PostConstruct;
+
+public class UserHolder implements BeanNameAware, BeanClassLoaderAware,BeanFactoryAware , EnvironmentAware, InitializingBean {
     private final User user;
     private Integer num;
     private String description;
@@ -34,6 +33,25 @@ public class UserHolder implements BeanNameAware, BeanClassLoaderAware,BeanFacto
         this.user = user;
     }
 
+    /**
+     * 依赖于注解驱动
+     * 当前场景：BeanFactory
+     */
+    @PostConstruct
+    public void initPostConstruct(){
+        this.description = "the user holder v4";
+        System.out.println("initPostConstruct =  "+this.description);
+    }
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        this.description = "the user holder v5";
+        System.out.println("afterPropertiesSet = "+this.description);
+
+    }
+    public void init(){
+        this.description = "the user holder v6";
+        System.out.println("init = "+this.description);
+    }
     @Override
     public String toString() {
         return "UserHolder{" +
@@ -67,4 +85,8 @@ public class UserHolder implements BeanNameAware, BeanClassLoaderAware,BeanFacto
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
+
+
+
+
 }
