@@ -26,6 +26,10 @@ public class BeanInitializationLifecycleDemo {
         EncodedResource encodedResource = new EncodedResource(resource,"UTF-8");*/
         int beanNumbers = beanDefinitionReader.loadBeanDefinitions(locations);
         System.out.println("已加载BeanDefinition数量:"+beanNumbers);
+        //SmartInitializingSingleton通常在Spring ApplicationContext场景使用
+        //preInstantiateSingletons将已注册的BeanDefinition初始化成已注册的Spring Bean
+        beanFactory.preInstantiateSingletons();
+
         User user = beanFactory.getBean("user", User.class);
         System.out.println(user);
 
@@ -34,6 +38,8 @@ public class BeanInitializationLifecycleDemo {
 
         //构造器注入按照类型注入，resolveDependency
         UserHolder userHolder = beanFactory.getBean("userHolder",UserHolder.class);
+        System.out.println(userHolder);
+
         System.out.println(userHolder);
     }
 }

@@ -8,7 +8,8 @@ import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
 
-public class UserHolder implements BeanNameAware, BeanClassLoaderAware,BeanFactoryAware , EnvironmentAware, InitializingBean {
+public class UserHolder implements BeanNameAware, BeanClassLoaderAware,BeanFactoryAware , EnvironmentAware,
+        InitializingBean,SmartInitializingSingleton {
     private final User user;
     private Integer num;
     private String description;
@@ -87,6 +88,9 @@ public class UserHolder implements BeanNameAware, BeanClassLoaderAware,BeanFacto
     }
 
 
-
-
+    @Override
+    public void afterSingletonsInstantiated() {
+        this.description = "the user holder v8";
+        System.out.println("afterSingletonsInstantiated = "+this.description);
+    }
 }
