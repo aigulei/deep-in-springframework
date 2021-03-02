@@ -9,7 +9,7 @@
 
         <bean class="com.ai.thinking.in.spring.bean.lifecycle.MyInstantiationAwareBeanPostProcessor" />
 
-        <bean id="userHolder" class="com.ai.thinking.in.spring.bean.lifecycle.UserHolder" init-method="init" autowire="constructor">
+        <bean id="userHolder" class="com.ai.thinking.in.spring.bean.lifecycle.UserHolder" init-method="init" destroy-method="doDestroy" autowire="constructor">
             <property name="description" value="this is userHolder"></property>
         </bean>
 
