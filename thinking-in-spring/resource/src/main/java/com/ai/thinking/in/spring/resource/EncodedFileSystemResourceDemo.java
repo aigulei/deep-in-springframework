@@ -12,7 +12,7 @@ import java.io.Reader;
  */
 public class EncodedFileSystemResourceDemo {
     public static void main(String[] args) throws  Exception{
-        String currentJavaFilePath = "D:\\coder\\workSpaceForSpring\\deep-in-springframework\\thinking-in-spring\\resource\\src\\main\\java\\com\\ai\\thinking\\in\\spring\\resource\\EncodedFileSystemResourceDemo.java";
+        String currentJavaFilePath = System.getProperty("user.dir")+"\\thinking-in-spring\\resource\\src\\main\\java\\com\\ai\\thinking\\in\\spring\\resource\\EncodedFileSystemResourceDemo.java";
         File currentJavaFile = new File(currentJavaFilePath);
         FileSystemResource fileSystemResource = new FileSystemResource(currentJavaFilePath);
         EncodedResource encodedResource = new EncodedResource(fileSystemResource,"UTF-8");

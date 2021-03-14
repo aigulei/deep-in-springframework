@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class EncodedFileSystemResourceLoaderDemo {
     public static void main(String[] args) throws IOException {
-        String currentJavaFilePath = "D:\\coder\\workSpaceForSpring\\deep-in-springframework\\thinking-in-spring\\resource\\src\\main\\java\\com\\ai\\thinking\\in\\spring\\resource\\EncodedFileSystemResourceLoaderDemo.java";
+        String currentJavaFilePath = System.getProperty("user.dir")+"\\thinking-in-spring\\resource\\src\\main\\java\\com\\ai\\thinking\\in\\spring\\resource\\EncodedFileSystemResourceLoaderDemo.java";
         FileSystemResourceLoader resourceLoader = new FileSystemResourceLoader();
         Resource resource = resourceLoader.getResource(currentJavaFilePath);
         EncodedResource encodedResource = new EncodedResource(resource,"UTF-8");
