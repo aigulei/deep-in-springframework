@@ -36,10 +36,10 @@ public class ErrorsMessageDemo {
         }
     }
 
-    private static MessageSource createMessageSource() {
+     static MessageSource createMessageSource() {
         StaticMessageSource messageSource = new StaticMessageSource();
         messageSource.addMessage("user.properties.not.null", Locale.getDefault(),"User属性不能为空");
-
+         messageSource.addMessage("id.required", Locale.getDefault(),"the id of user must not be null");
         messageSource.addMessage("name.required", Locale.getDefault(),"the name of user must not be null");
         return messageSource;
     }
