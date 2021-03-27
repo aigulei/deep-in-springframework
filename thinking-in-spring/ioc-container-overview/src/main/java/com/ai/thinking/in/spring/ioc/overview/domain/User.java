@@ -17,6 +17,16 @@ public class User implements BeanNameAware {
     private List<City> lifeCities;
     private Resource configFileLocation;
     private String beanName;
+    private Company company;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     public Long getId() {
         return id;
     }
@@ -74,6 +84,7 @@ public class User implements BeanNameAware {
                 ", workCities=" + Arrays.toString(workCities) +
                 ", lifeCities=" + lifeCities +
                 ", configFileLocation=" + configFileLocation +
+                ", company=" + company +
                 '}';
     }
 
