@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/beans/spring-context.xsd
+        http://www.springframework.org/schema/util
+        https://www.springframework.org/schema/util/spring-util.xsd">
+    <!--<context:annotation-config></context:annotation-config>-->
+    <bean class="com.ai.thinking.in.spring.CustomizedPropertyEditorRegistrar"></bean>
+
+    <bean id="propertiesToStringConverter" class="com.ai.thinking.in.spring.PropertiesToStringConverter"> </bean>
+    <!--名称必须为conversionService
+    参见org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization-->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters" ref="propertiesToStringConverter"></property>
+    </bean>
+    <util:properties id="context">
+        <prop key="id">1</prop>
+        <prop key="name">China</prop>
+    </util:properties>
+    <bean id="user" class ="com.ai.thinking.in.spring.ioc.overview.domain.User">
+        <property name="id" value="1"></property>
+        <property name="name" value="AI"></property>
+        <property name="context">
+            <value>
+                id=1
+                name=AI
+            </value>
+        </property>
+        <property name="contextAsText" ref="context">
+        </property>
+    </bean>
+
+</beans>

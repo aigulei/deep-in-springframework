@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 public class User implements BeanNameAware {
     private Long id;
@@ -18,6 +19,24 @@ public class User implements BeanNameAware {
     private Resource configFileLocation;
     private String beanName;
     private Company company;
+    private Properties context;
+    private String contextAsText;
+
+    public String getContextAsText() {
+        return contextAsText;
+    }
+
+    public void setContextAsText(String contextAsText) {
+        this.contextAsText = contextAsText;
+    }
+
+    public Properties getContext() {
+        return context;
+    }
+
+    public void setContext(Properties context) {
+        this.context = context;
+    }
 
     public Company getCompany() {
         return company;
@@ -84,7 +103,10 @@ public class User implements BeanNameAware {
                 ", workCities=" + Arrays.toString(workCities) +
                 ", lifeCities=" + lifeCities +
                 ", configFileLocation=" + configFileLocation +
+                ", beanName='" + beanName + '\'' +
                 ", company=" + company +
+                ", context=" + context +
+                ", contextAsText='" + contextAsText + '\'' +
                 '}';
     }
 
