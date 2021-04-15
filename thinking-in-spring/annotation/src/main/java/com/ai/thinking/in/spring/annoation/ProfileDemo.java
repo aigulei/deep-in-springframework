@@ -11,6 +11,8 @@ public class ProfileDemo {
         ConfigurableEnvironment environment = context.getEnvironment();
         environment.setDefaultProfiles("even");
         //environment.setActiveProfiles("odd");
+        // --spring.profiles.active = even
+        // -Dspring.profiles.active=even
         context.refresh();
 
         Integer number = context.getBean("number",Integer.class);
